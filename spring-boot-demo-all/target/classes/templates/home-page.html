@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .display--none {
+        display: none;
+      }
+    </style>
+    <title>home page</title>
+  </head>
+  <body>
+    <h1>Welcome to the simple library interface</h1>
+    <div th:class="(${flag} == 'added') ? '' : 'display--none'">
+      <p th:text="${message}">Some mesage</p>
+    </div>
+    <a href="/user/login-page" th:href="@{/user/login-page}">login</a>
+    <a href="/user/registration-page" th:href="@{/user/registration-page}"
+      >Sign up</a
+    >
+  </body>
+</html>

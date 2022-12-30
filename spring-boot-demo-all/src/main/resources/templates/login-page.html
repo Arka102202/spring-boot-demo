@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .display--none {
+        display: none;
+      }
+      .display {
+        color: red;
+      }
+    </style>
+    <title>login page</title>
+  </head>
+  <body>
+    <h1>This is the login form</h1>
+    <div th:class="(${flag} == 'invalid') ? 'display' : 'display--none'">
+      <p th:text="${message}"></p>
+    </div>
+    <form
+      action="/user/process-login-page"
+      th:action="@{/user/process-login-page}"
+      th:object="${user}"
+      method="post"
+    >
+      <div>
+        <label for="first-name"> First Name :</label>
+        <!-- input type="text" id="datePlanted" name="datePlanted" th:value="*{datePlanted}" />  replacement of this the following -->
+        <input type="text" th:field="*{firstName}" id="first-name" required />
+      </div>
+      <div>
+        <label for="new-password">Password :</label>
+        <input
+          type="password"
+          autocomplete="new-password"
+          id="new-password"
+          th:field="*{password}"
+          required
+        />
+      </div>
+      <input type="submit" value="Login" />
+      <input type="reset" value="Reset Form" />
+    </form>
+  </body>
+</html>
